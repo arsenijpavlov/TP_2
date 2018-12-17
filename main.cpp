@@ -1,66 +1,77 @@
-//1) Считать текст из файла;
-//2) Вывести его на экран, заменив цифры от 0 до 9 словами «ноль», «один», ..., «девять»
-	//Начиная каждое предложение с новой строки
+п»ї//1) РЎС‡РёС‚Р°С‚СЊ С‚РµРєСЃС‚ РёР· С„Р°Р№Р»Р°;
+//2) Р’С‹РІРµСЃС‚Рё РµРіРѕ РЅР° СЌРєСЂР°РЅ, Р·Р°РјРµРЅРёРІ С†РёС„СЂС‹ РѕС‚ 0 РґРѕ 9 СЃР»РѕРІР°РјРё В«РЅРѕР»СЊВ», В«РѕРґРёРЅВ», ..., В«РґРµРІСЏС‚СЊВ»
+	//РќР°С‡РёРЅР°СЏ РєР°Р¶РґРѕРµ РїСЂРµРґР»РѕР¶РµРЅРёРµ СЃ РЅРѕРІРѕР№ СЃС‚СЂРѕРєРё
 #include <iostream>
 #include <fstream>
 #include <string>
-//#include <sstream>
+#include <exception>
 
 using namespace std;
 
-ifstream file;	//исходный файл
+ifstream file;	//РёСЃС…РѕРґРЅС‹Р№ С„Р°Р№Р»
 
 int main() {
 	setlocale(LC_ALL, "Rus");
-	cout << "Введите имя файла: ";
-	string name;
+	cout << "Р’РІРµРґРёС‚Рµ РёРјСЏ С„Р°Р№Р»Р°: ";
+	string name, line;
 	char c;
 
 	//enum num { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
 
-	cin >> name;
-	file.open(name);
+	try {
+		cin >> name;
+		file.open(name);
+	}
+	catch (...) {
+		cout << "РќРµРІРµСЂРЅРѕРµ РёРјСЏ С„Р°Р№Р»Р°" << endl;
+	}
 
 	while (!file.eof()) {
-		file >> c;
-		switch(c){
-		case '1':
-			cout << " ОДИН ";
-			break;
-		case '2':
-			cout << " ДВА ";
-			break;
-		case '3':
-			cout << " ТРИ ";
-			break;
-		case '4':
-			cout << " ЧЕТЫРЕ ";
-			break;
-		case '5':
-			cout << " ПЯТЬ ";
-			break;
-		case '6':
-			cout << " ШЕСТЬ ";
-			break;
-		case '7':
-			cout << " СЕМЬ ";
-			break;
-		case '8':
-			cout << " ВОСЕМЬ ";
-			break;
-		case '9':
-			cout << " ДЕВЯТЬ ";
-			break;
-		case '0':
-			cout << " НОЛЬ ";
-			break;
-		case '.':
-		case '!':
-		case '?':
-			cout << c << endl;
-			break;
-		default:
-			cout << c;
+		//file >> c;
+		// Р•СЃР»Рё СЂР°Р±РѕС‚Р°С‚СЊ С‚РѕР»СЊРєРѕ СЃ СЃРёРјРІРѕР»Р°РјРё, С‚Рѕ РїСЂРѕР±РµР»С‹ РѕС‚РѕР±СЂР°Р¶Р°СЋС‚СЃСЏ РЅРµРєРѕСЂСЂРµРєС‚РЅРѕ
+		while (getline(file, line, '\n')) {
+			for (int i = 0; i < line.size(); i++) {
+				c = line[i];
+				switch (c) {
+				case '1':
+					cout << " РћР”РРќ ";
+					break;
+				case '2':
+					cout << " Р”Р’Рђ ";
+					break;
+				case '3':
+					cout << " РўР Р ";
+					break;
+				case '4':
+					cout << " Р§Р•РўР«Р Р• ";
+					break;
+				case '5':
+					cout << " РџРЇРўР¬ ";
+					break;
+				case '6':
+					cout << " РЁР•РЎРўР¬ ";
+					break;
+				case '7':
+					cout << " РЎР•РњР¬ ";
+					break;
+				case '8':
+					cout << " Р’РћРЎР•РњР¬ ";
+					break;
+				case '9':
+					cout << " Р”Р•Р’РЇРўР¬ ";
+					break;
+				case '0':
+					cout << " РќРћР›Р¬ ";
+					break;
+				case '.':
+				case '!':
+				case '?':
+					cout << c << endl;
+					break;
+				default:
+					cout << c;
+				}
+			}
 		}
 	}
 	cout << endl;
