@@ -36,6 +36,7 @@ int main() {
 			break;
 		case 2:
 			cout << "Файл пустой" << endl;
+			file.close();
 			break;
 		}
 	}
@@ -44,10 +45,11 @@ int main() {
 		while (!file.eof()) {
 			//file >> c;
 			// Если работать только с символами, то пробелы отображаются некорректно
-			while (getline(file, line, '\n')) {
+			while (getline(file, line, '\n')) { //сперва загружаем текст в строку, а затем из строки рассматриваем по символу
 				for (int i = 0; i < line.size(); i++) {
 					c = line[i];
 					switch (c) {
+					//замена цифр на слова
 					case '1':
 						cout << " ОДИН ";
 						break;
@@ -78,11 +80,13 @@ int main() {
 					case '0':
 						cout << " НОЛЬ ";
 						break;
+					//конец ПРЕДЛОЖЕНИЯ и переход на новую строку
 					case '.':
 					case '!':
 					case '?':
 						cout << c << endl;
 						break;
+					//копирование символа из файла на экран
 					default:
 						cout << c;
 					}
